@@ -12,9 +12,11 @@ module.exports = {
   },
   createMemo: (req, res) => {
     models.Memos.create({
-      text: req.body.content
-    }).then(function (data) {
-      res.send(data)
+      text: req.body.create
+    }).then(function () {
+      models.Memos.findAll().then(function (data) {
+        res.send(data)
+      })
     }).catch(function (err) {
       res.json(err)
     })
@@ -25,7 +27,9 @@ module.exports = {
         id: req.params.id
       }
     }).then(function () {
-      res.send(data)
+      models.Memos.findAll().then(function (data) {
+        res.send(data)
+      })
     }).catch(function (err) {
       res.json(err)
     })
@@ -34,11 +38,13 @@ module.exports = {
     models.Memos.findById(req.params.id).then(function (memo) {
       memo.update({
         text: req.body.input
-      }).then(function (data) {
-        res.send(data)
+      }).then(function () {
+        models.Memos.findAll().then(function (data) {
+          res.send(data)
+        })
+      }).catch(function (err) {
+        res.json(err)
       })
-    }).catch(function (err) {
-      res.json(err)
     })
   }
 }
