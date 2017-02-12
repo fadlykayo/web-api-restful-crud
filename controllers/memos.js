@@ -12,13 +12,9 @@ module.exports = {
   },
   createMemo: (req, res) => {
     models.Memos.create({
-      username: req.body.username,
-      password: hash.generate(req.body.password),
-      role: req.body.role,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      text: req.body.content
     }).then(function (data) {
-      res.json({data})
+      res.send(data)
     }).catch(function (err) {
       res.json(err)
     })
@@ -28,21 +24,18 @@ module.exports = {
       where: {
         id: req.params.id
       }
-    }).then(function (data) {
-      res.send(`Delete user with ID: ${req.params.id}`)
+    }).then(function () {
+      res.send(`Delete memo with ID: ${req.params.id}`)
     }).catch(function (err) {
       res.json(err)
     })
   },
   updateMemo: (req, res) => {
-    models.Memos.findById(req.params.id).then(function (findUser) {
-      findUser.update({
-        username: req.body.username,
-        password: hash.generate(req.body.password),
-        role: req.body.role,
-        updatedAt: new Date()
+    models.Memos.findById(req.params.id).then(function (memo) {
+      memo.update({
+        text: req.body.content
       }).then(function (data) {
-        res.json({data, message: 'Data has been updated'})
+        res.send({Updated_Data: data})
       })
     }).catch(function (err) {
       res.json(err)
