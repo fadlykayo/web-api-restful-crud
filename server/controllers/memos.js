@@ -37,7 +37,7 @@ module.exports = {
   updateMemo: (req, res) => {
     models.Memos.findById(req.params.id).then(function (memo) {
       memo.update({
-        text: req.body.input
+        text: req.body.update
       }).then(function () {
         models.Memos.findAll().then(function (data) {
           res.send(data)

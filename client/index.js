@@ -72,7 +72,7 @@ function deleteMemo(i, id) {
         console.log('DELETE Response Error')
       }
     })
-  }  
+  }
 }
 
 function createMemo() {
