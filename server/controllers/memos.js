@@ -25,7 +25,7 @@ module.exports = {
         id: req.params.id
       }
     }).then(function () {
-      res.send(`Delete memo with ID: ${req.params.id}`)
+      res.send(data)
     }).catch(function (err) {
       res.json(err)
     })
@@ -33,7 +33,7 @@ module.exports = {
   updateMemo: (req, res) => {
     models.Memos.findById(req.params.id).then(function (memo) {
       memo.update({
-        text: req.body.content
+        text: req.body.input
       }).then(function (data) {
         res.send(data)
       })
