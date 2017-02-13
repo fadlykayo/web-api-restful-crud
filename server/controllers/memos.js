@@ -7,7 +7,7 @@ module.exports = {
     models.Memos.findAll().then(function (data) {
       res.send(data)
     }).catch(function (err) {
-      res.json(err)
+      res.send(err)
     })
   },
   createMemo: (req, res) => {
@@ -18,7 +18,7 @@ module.exports = {
         res.send(data)
       })
     }).catch(function (err) {
-      res.json(err)
+      res.send(err)
     })
   },
   deleteMemo: (req, res) => {
@@ -31,7 +31,7 @@ module.exports = {
         res.send(data)
       })
     }).catch(function (err) {
-      res.json(err)
+      res.send(err)
     })
   },
   updateMemo: (req, res) => {
@@ -43,7 +43,7 @@ module.exports = {
           res.send(data)
         })
       }).catch(function (err) {
-        res.json(err)
+        res.send(err)
       })
     })
   }
